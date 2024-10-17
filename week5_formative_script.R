@@ -24,7 +24,8 @@ demog <- demog_raw %>%
 BMX_raw <- read.csv("data/original/BMX_D.csv")
 
 BMX <- BMX_raw %>%
-  janitor::clean_names()
+  janitor::clean_names() %>% 
+  select(-x)
 
 # merge bmx with demog data, keeping demog info at the start
 demog_bmx <- left_join(BMX,
@@ -58,34 +59,64 @@ sample_demog <- sample_demog %>%
 
 ##### # Section 5 - Summarise the data
 
-# obesity groups
-sample_demog %>%
-  group_by(obesity) %>%
-  summarise(count = n(),
-            prop = count/nrow(sample_demog))
 
-# those who are obese with activity monitor data:
-sample_demog %>%
+# obese patients with AMD:
+
+obese_amd <- sample_demog %>% 
+  filter(!is.na(obesity)) %>%
   group_by(obesity, in_sample) %>%
-  summarise(count = n(),
-            prop = count/nrow(sample_demog))
+  summarise(count = n()) %>%
+  ungroup(in_sample) %>%
+  reframe(in_sample = in_sample, 
+          percent = count / sum(count) * 100)
+
+
+paste0("Within obese patients in the body measurement sample, ", 
+       round(obese_amd$percent[4], 2), 
+       "% have activity monitor data, and ",
+       round(obese_amd$percent[3], 2),
+       "% do not.")
+
+paste0("Within non-obese patients in the body measurement sample, ", 
+       round(obese_amd$percent[2], 2), 
+       "% have activity monitor data, and ",
+       round(obese_amd$percent[1], 2),
+       "% do not.")
+
+
 
 
 # % of males have AMD
-sample_demog %>% 
-  filter(riagendr == 2) %>%
-  group_by(in_sample) %>%
-  summarise(n = n())
 
-sample_demog %>% 
-  filter(riagendr == 1) %>%
-  group_by(in_sample) %>%
-  summarise(n = n(),
-            percent = (n/nrow()) * 100)
+AMD_dat <- sample_demog %>%
+  group_by(riagendr, in_sample) %>%
+  summarise(count = n()) %>%
+  ungroup(in_sample) %>%
+  reframe(in_sample = in_sample, 
+          percent = count / sum(count) * 100)
+
+paste("Within male patients, ",
+      round(AMD_dat[AMD_dat$riagendr==1 & AMD_dat$in_sample==1, ]$percent, 2),
+      "% had activity monitor data, compared to ",
+      round(AMD_dat[AMD_dat$riagendr==2 & AMD_dat$in_sample==1, ]$percent, 2),
+      "% of femaleS")
+      
+
+# max height in cm of child under 16 in sample:
+max_height <- sample_demog %>% 
+  filter(ridageyr < 16) %>% 
+  arrange(desc(bmxht)) %>%
+  head(1) %>%
+  pull(bmxht)
+
+paste0("The maximum height in cm for a child under 16 is: ", max_height, "cm")
+
 
 ##### # Section 6 - Export the data
 
-
+# save combined data to body_measurements.csv
+write_csv(sample_demog, 
+          file = "data/derived/body_measurements.csv")
 
 
 
