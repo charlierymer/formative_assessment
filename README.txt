@@ -1,30 +1,25 @@
 
+############## FORMATIVE ASSESSMENT ############
 
-Instructions: how to create and activate the conda environment
-
-
-To begin, ensure conda is installed:
-conda --version
-
-If not, install conda:
-sudo install apt conda
+# Date 03/10/2024
 
 
-Activate conda:
-conda activate
+
+###### Summary of task:
+
+# Using body measurements and physical activity monitor documentation
+# Exploring the data
+# Processing the data
+# Generating a sample file
 
 
-Create a new conda environment:
-conda create -n r-env
-
-Install any required packages:
-conda install r-base
-conda install r-tidyverse
+# BMX_D.csv is a CSV file containing the body measurements for each patient
+# accel folder contains many text files specifying the physical activity monitor documentation for the patients
 
 
-List the packages installed:
-conda list
+# Number of partipants with body measurements: 9951
 
+# Number of partipants with accelelerometer data: 7751
 
 
 
