@@ -1,0 +1,5 @@
+Removing the ID line, leaving the header as the first line
+header: "PAXSTAT"\t"PAXCAL"\t"PAXDAY"\t"PAXN"\t"PAXHOUR"\t"PAXMINUT"\t"PAXINTEN"\t"PAXSTEP"
+Number of files: 7457
+Removing any lines with NA\tNA\tNA\n
+Checking for all 8 cols

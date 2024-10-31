@@ -1,0 +1,11 @@
+name: formative_wk4
+channels:
+  - conda-forge
+  - defaults
+  - bioconda
+dependencies:
+  - r-base
+  - r-tidyverse
+  - snakemake
+  - python=3.12
+prefix: /home/charlierymer01/miniconda3/envs/formative_wk4
