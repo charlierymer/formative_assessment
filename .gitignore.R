@@ -3,6 +3,8 @@
 
 # Used to tell github which data to ignore and not copy
 
+# ignore the folder containing data
+data/
 
 # copied from venexia demo code:
 # History files
