@@ -3,7 +3,10 @@
 
 
 # move to the directory containing BMX_D.csv:
-cd /mnt/c/Users/charl/Dropbox/PC/Documents/"Bristol Uni"/AHDS/"Week 3"/formative_assessment/data/original
+# cd /mnt/c/Users/charl/Dropbox/PC/Documents/"Bristol Uni"/AHDS/"Week 3"/formative_assessment/data/original
+
+# cd to data location:
+cd ../data/original
 
 # look at the first 10 rows
 head BMX_D.csv

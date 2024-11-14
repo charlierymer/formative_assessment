@@ -4,8 +4,9 @@
 ############## Bash script to process the accel data ###########
 
 # move to the accel directory containing each of the accel files
+# cd /mnt/c/Users/charl/Dropbox/PC/Documents/"Bristol Uni"/AHDS/"Week 3"/formative_assessment/data/original/short_accel
+cd ../data/original/accel
 
-cd /mnt/c/Users/charl/Dropbox/PC/Documents/"Bristol Uni"/AHDS/"Week 3"/formative_assessment/data/original/short_accel
 
 # print number of accel files 
 numFiles=`ls | wc -l`
