@@ -16,7 +16,7 @@
 
 # cd "${SLURM_SUBMIT_DIR}"
 # change to the root directory:
-# cd ../
+cd ../
 
 
 echo 'Setting up environment'
@@ -29,7 +29,7 @@ mamba activate formative_wk4
 
 
 # run all the steps in the Snakefile
-snakemake -n -c1 
+snakemake -c1 
 
 
 # make required directories
