@@ -1,5 +1,6 @@
 
 ## A gitignore file for the formative assessment
+.gitignore.R
 
 # Used to tell github which data to ignore and not copy
 
